@@ -3,10 +3,10 @@ import { Reveal } from "./Reveal";
 import { IMG } from "./images";
 
 const categories = [
-  { title: "Weddings", count: "120+ films", img: IMG.catWedding, span: "lg:col-span-7 lg:row-span-2 h-[520px]" },
-  { title: "Birthday Celebrations", count: "80+ events", img: IMG.catBirthday, span: "lg:col-span-5 h-[250px]" },
-  { title: "Baby Showers", count: "60+ stories", img: IMG.catBaby, span: "lg:col-span-5 h-[250px]" },
-  { title: "Corporate", count: "140+ brands", img: IMG.catCorporate, span: "lg:col-span-12 h-[360px]" },
+  { title: "Weddings", count: "120+ films", img: IMG.catWedding, span: "h-[420px] lg:h-[520px] lg:col-span-7 lg:row-span-2" },
+  { title: "Birthday Celebrations", count: "80+ events", img: IMG.catBirthday, span: "h-[280px] lg:h-[250px] lg:col-span-5" },
+  { title: "Baby Showers", count: "60+ stories", img: IMG.catBaby, span: "h-[280px] lg:h-[250px] lg:col-span-5" },
+  { title: "Corporate", count: "140+ brands", img: IMG.catCorporate, span: "h-[320px] lg:h-[360px] lg:col-span-12" },
 ];
 
 export const Portfolio = () => {

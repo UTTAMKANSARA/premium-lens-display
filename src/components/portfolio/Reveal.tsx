@@ -15,6 +15,15 @@ export const Reveal = ({ children, className = "", delay = 0, as: Tag = "div", v
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
+
+    // Reveal immediately if already in view on mount (avoids stuck hidden state)
+    const rect = node.getBoundingClientRect();
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    if (rect.top < vh && rect.bottom > 0) {
+      setVisible(true);
+      return;
+    }
+
     const obs = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -24,7 +33,7 @@ export const Reveal = ({ children, className = "", delay = 0, as: Tag = "div", v
           }
         });
       },
-      { threshold: 0.15, rootMargin: "0px 0px -60px 0px" }
+      { threshold: 0.05, rootMargin: "0px 0px 10% 0px" }
     );
     obs.observe(node);
     return () => obs.disconnect();

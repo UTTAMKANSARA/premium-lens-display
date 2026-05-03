@@ -47,31 +47,31 @@ export const Reveal = ({ children, className = "", delay = 0, as: Tag = "div", v
 
   const base = variant === "mask" ? "reveal-mask" : "reveal";
   const style: CSSProperties = { transitionDelay: `${delay}ms` };
+  const setNode = (node: HTMLElement | null) => {
+    ref.current = node;
+  };
 
   const props = {
-    ref: (node: HTMLElement | null) => {
-      ref.current = node;
-    },
     className: `${base} ${visible ? "is-visible" : ""} ${className}`,
     style,
   };
 
   switch (Tag) {
     case "span":
-      return <span {...props}>{children}</span>;
+      return <span ref={setNode} {...props}>{children}</span>;
     case "section":
-      return <section {...props}>{children}</section>;
+      return <section ref={setNode} {...props}>{children}</section>;
     case "li":
-      return <li {...props}>{children}</li>;
+      return <li ref={setNode} {...props}>{children}</li>;
     case "h1":
-      return <h1 {...props}>{children}</h1>;
+      return <h1 ref={setNode} {...props}>{children}</h1>;
     case "h2":
-      return <h2 {...props}>{children}</h2>;
+      return <h2 ref={setNode} {...props}>{children}</h2>;
     case "h3":
-      return <h3 {...props}>{children}</h3>;
+      return <h3 ref={setNode} {...props}>{children}</h3>;
     case "p":
-      return <p {...props}>{children}</p>;
+      return <p ref={setNode} {...props}>{children}</p>;
     default:
-      return <div {...props}>{children}</div>;
+      return <div ref={setNode} {...props}>{children}</div>;
   }
 };

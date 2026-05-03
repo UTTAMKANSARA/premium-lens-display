@@ -1,4 +1,4 @@
-import { createElement, useEffect, useRef, useState, type ReactNode, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type ReactNode, type CSSProperties } from "react";
 
 interface RevealProps {
   children: ReactNode;
@@ -48,15 +48,30 @@ export const Reveal = ({ children, className = "", delay = 0, as: Tag = "div", v
   const base = variant === "mask" ? "reveal-mask" : "reveal";
   const style: CSSProperties = { transitionDelay: `${delay}ms` };
 
-  return createElement(
-    Tag,
-    {
-      ref: (node: HTMLElement | null) => {
-        ref.current = node;
-      },
-      className: `${base} ${visible ? "is-visible" : ""} ${className}`,
-      style,
+  const props = {
+    ref: (node: HTMLElement | null) => {
+      ref.current = node;
     },
-    children
-  );
+    className: `${base} ${visible ? "is-visible" : ""} ${className}`,
+    style,
+  };
+
+  switch (Tag) {
+    case "span":
+      return <span {...props}>{children}</span>;
+    case "section":
+      return <section {...props}>{children}</section>;
+    case "li":
+      return <li {...props}>{children}</li>;
+    case "h1":
+      return <h1 {...props}>{children}</h1>;
+    case "h2":
+      return <h2 {...props}>{children}</h2>;
+    case "h3":
+      return <h3 {...props}>{children}</h3>;
+    case "p":
+      return <p {...props}>{children}</p>;
+    default:
+      return <div {...props}>{children}</div>;
+  }
 };

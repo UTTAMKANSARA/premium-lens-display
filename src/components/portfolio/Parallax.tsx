@@ -12,7 +12,11 @@ export const Parallax = ({ children, speed = 0.15, className = "" }: ParallaxPro
 
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) return;
+    const isCompactViewport = window.innerWidth < 1024;
+    if (reduce || isCompactViewport) {
+      setOffset(0);
+      return;
+    }
 
     let raf = 0;
     const update = () => {
@@ -22,7 +26,9 @@ export const Parallax = ({ children, speed = 0.15, className = "" }: ParallaxPro
       const viewport = window.innerHeight;
       // Distance from viewport center, normalized
       const center = rect.top + rect.height / 2 - viewport / 2;
-      setOffset(center * -speed);
+      const nextOffset = center * -speed;
+      const maxOffset = Math.min(72, Math.max(32, rect.height * 0.12));
+      setOffset(Math.max(-maxOffset, Math.min(maxOffset, nextOffset)));
     };
 
     const onScroll = () => {

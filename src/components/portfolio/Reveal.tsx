@@ -13,6 +13,12 @@ export const Reveal = ({ children, className = "", delay = 0, as: Tag = "div", v
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion || typeof IntersectionObserver === "undefined") {
+      setVisible(true);
+      return;
+    }
+
     const node = ref.current;
     if (!node) return;
 
@@ -41,14 +47,31 @@ export const Reveal = ({ children, className = "", delay = 0, as: Tag = "div", v
 
   const base = variant === "mask" ? "reveal-mask" : "reveal";
   const style: CSSProperties = { transitionDelay: `${delay}ms` };
+  const setNode = (node: HTMLElement | null) => {
+    ref.current = node;
+  };
 
-  return (
-    <Tag
-      ref={ref as never}
-      className={`${base} ${visible ? "is-visible" : ""} ${className}`}
-      style={style}
-    >
-      {children}
-    </Tag>
-  );
+  const props = {
+    className: `${base} ${visible ? "is-visible" : ""} ${className}`,
+    style,
+  };
+
+  switch (Tag) {
+    case "span":
+      return <span ref={setNode} {...props}>{children}</span>;
+    case "section":
+      return <section ref={setNode} {...props}>{children}</section>;
+    case "li":
+      return <li ref={setNode} {...props}>{children}</li>;
+    case "h1":
+      return <h1 ref={setNode} {...props}>{children}</h1>;
+    case "h2":
+      return <h2 ref={setNode} {...props}>{children}</h2>;
+    case "h3":
+      return <h3 ref={setNode} {...props}>{children}</h3>;
+    case "p":
+      return <p ref={setNode} {...props}>{children}</p>;
+    default:
+      return <div ref={setNode} {...props}>{children}</div>;
+  }
 };

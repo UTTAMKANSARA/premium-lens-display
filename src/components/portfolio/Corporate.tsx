@@ -61,7 +61,7 @@ export const Corporate = () => {
 
           {/* Masonry */}
           <div className="lg:col-span-7">
-            <div className="grid grid-cols-2 gap-4 md:gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 items-start">
               <Parallax speed={0.06} className="space-y-4 md:space-y-5">
                 <Reveal variant="mask">
                   <img src={IMG.corp1} alt="Corporate keynote" loading="lazy" className="w-full aspect-[4/5] object-cover rounded-2xl" />
@@ -70,7 +70,7 @@ export const Corporate = () => {
                   <img src={IMG.corp2} alt="Team workshop" loading="lazy" className="w-full aspect-square object-cover rounded-2xl" />
                 </Reveal>
               </Parallax>
-              <Parallax speed={-0.08} className="space-y-4 md:space-y-5 mt-10">
+              <Parallax speed={-0.08} className="space-y-4 md:space-y-5 sm:mt-10">
                 <Reveal variant="mask" delay={80}>
                   <img src={IMG.corp3} alt="Brand portrait" loading="lazy" className="w-full aspect-square object-cover rounded-2xl" />
                 </Reveal>

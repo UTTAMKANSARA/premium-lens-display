@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactNode, type CSSProperties } from "react";
+import { createElement, useEffect, useRef, useState, type ReactNode, type CSSProperties } from "react";
 
 interface RevealProps {
   children: ReactNode;
@@ -13,6 +13,12 @@ export const Reveal = ({ children, className = "", delay = 0, as: Tag = "div", v
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion || typeof IntersectionObserver === "undefined") {
+      setVisible(true);
+      return;
+    }
+
     const node = ref.current;
     if (!node) return;
 
@@ -42,13 +48,15 @@ export const Reveal = ({ children, className = "", delay = 0, as: Tag = "div", v
   const base = variant === "mask" ? "reveal-mask" : "reveal";
   const style: CSSProperties = { transitionDelay: `${delay}ms` };
 
-  return (
-    <Tag
-      ref={ref as never}
-      className={`${base} ${visible ? "is-visible" : ""} ${className}`}
-      style={style}
-    >
-      {children}
-    </Tag>
+  return createElement(
+    Tag,
+    {
+      ref: (node: HTMLElement | null) => {
+        ref.current = node;
+      },
+      className: `${base} ${visible ? "is-visible" : ""} ${className}`,
+      style,
+    },
+    children
   );
 };

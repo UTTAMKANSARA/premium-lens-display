@@ -4,6 +4,7 @@ import { Phone, Mail, MapPin, MessageCircle, Send, Instagram } from "lucide-reac
 import { toast } from "sonner";
 import { Reveal } from "./Reveal";
 
+
 const contactSchema = z.object({
   name: z.string().trim().min(2, "Please enter your name").max(80),
   email: z.string().trim().email("Enter a valid email").max(160),
@@ -12,7 +13,7 @@ const contactSchema = z.object({
   message: z.string().trim().min(10, "Tell us a little more (10+ chars)").max(800),
 });
 
-const PHONE = "+91 98XXX XXXXX";
+const PHONE = "+91 8769374119";
 const PHONE_HREF = "+918769374119";
 const EMAIL = "studio@aaravkapoor.in";
 const STUDIO = "Bandra West, Mumbai · Available across India";
@@ -20,9 +21,10 @@ const STUDIO = "Bandra West, Mumbai · Available across India";
 export const Contact = () => {
   const [submitting, setSubmitting] = useState(false);
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = new FormData(e.currentTarget);
+    const formElement = e.currentTarget;
+    const form = new FormData(formElement);
     const data = {
       name: String(form.get("name") || ""),
       email: String(form.get("email") || ""),
@@ -35,12 +37,31 @@ export const Contact = () => {
       toast.error(parsed.error.issues[0].message);
       return;
     }
+
     setSubmitting(true);
-    setTimeout(() => {
+
+    // Add Web3Forms access key
+    form.append("access_key", "99d3a489-7c36-43e7-9559-b2dc5863797a");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: form
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        toast.success("Success! Your message has been sent.");
+        formElement.reset();
+      } else {
+        toast.error("Error: " + result.message);
+      }
+    } catch (error) {
+      toast.error("Something went wrong. Please try again.");
+    } finally {
       setSubmitting(false);
-      (e.target as HTMLFormElement).reset();
-      toast.success("Thank you — I'll get back to you within 24 hours.");
-    }, 700);
+    }
   };
 
   return (

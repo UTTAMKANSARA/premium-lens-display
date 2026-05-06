@@ -1,12 +1,12 @@
 import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "./Reveal";
 import { IMG } from "./images";
-
+import { Link } from "react-router-dom";
 const categories = [
-  { title: "Wedding", count: "120+ films", image: IMG.catWedding, span: "h-[420px] lg:h-[520px] lg:col-span-7 lg:row-span-2" },
-  { title: "Birthday Celebration", count: "80+ events", image: IMG.catBirthday, span: "h-[280px] lg:h-[250px] lg:col-span-5" },
-  { title: "Baby Shower", count: "60+ stories", image: IMG.catBaby, span: "h-[280px] lg:h-[250px] lg:col-span-5" },
-  { title: "Corporate", count: "140+ brands", image: IMG.catCorporate, span: "h-[320px] lg:h-[360px] lg:col-span-12" },
+  { title: "Wedding", count: "120+ films", image: IMG.catWedding, span: "h-[420px] lg:h-[520px] lg:col-span-7 lg:row-span-2", to: "/wedding" },
+  { title: "Birthday Celebration", count: "80+ events", image: IMG.catBirthday, span: "h-[280px] lg:h-[250px] lg:col-span-5", to: "/birthday" },
+  { title: "Baby Shower", count: "60+ stories", image: IMG.catBaby, span: "h-[280px] lg:h-[250px] lg:col-span-5", to: "/baby-shower" },
+  { title: "Corporate", count: "140+ brands", image: IMG.catCorporate, span: "h-[320px] lg:h-[360px] lg:col-span-12", to: "/corporate" },
 ];
 
 export const Portfolio = () => {
@@ -35,8 +35,8 @@ export const Portfolio = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 auto-rows-fr">
           {categories.map((c, i) => (
             <Reveal key={c.title} variant="mask" className={c.span} delay={i * 90}>
-              <a
-                href="#contact"
+              <Link
+                to={c.to}
                 className={`group relative block h-full w-full overflow-hidden rounded-2xl shadow-card`}
               >
                 <img
@@ -65,7 +65,7 @@ export const Portfolio = () => {
                     View gallery
                   </span>
                 </div>
-              </a>
+              </Link>
             </Reveal>
           ))}
         </div>

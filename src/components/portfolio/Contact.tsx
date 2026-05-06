@@ -13,7 +13,7 @@ const contactSchema = z.object({
 });
 
 const PHONE = "+91 98XXX XXXXX";
-const PHONE_HREF = "+919800000000";
+const PHONE_HREF = "+918769374119";
 const EMAIL = "studio@aaravkapoor.in";
 const STUDIO = "Bandra West, Mumbai · Available across India";
 

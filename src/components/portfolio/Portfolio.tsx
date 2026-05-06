@@ -3,10 +3,10 @@ import { Reveal } from "./Reveal";
 import { IMG } from "./images";
 
 const categories = [
-  { title: "Weddings", count: "120+ films", img: IMG.catWedding, span: "h-[420px] lg:h-[520px] lg:col-span-7 lg:row-span-2" },
-  { title: "Birthday Celebrations", count: "80+ events", img: IMG.catBirthday, span: "h-[280px] lg:h-[250px] lg:col-span-5" },
-  { title: "Baby Showers", count: "60+ stories", img: IMG.catBaby, span: "h-[280px] lg:h-[250px] lg:col-span-5" },
-  { title: "Corporate", count: "140+ brands", img: IMG.catCorporate, span: "h-[320px] lg:h-[360px] lg:col-span-12" },
+  { title: "Wedding", count: "120+ films", image: IMG.catWedding, span: "h-[420px] lg:h-[520px] lg:col-span-7 lg:row-span-2" },
+  { title: "Birthday Celebration", count: "80+ events", image: IMG.catBirthday, span: "h-[280px] lg:h-[250px] lg:col-span-5" },
+  { title: "Baby Shower", count: "60+ stories", image: IMG.catBaby, span: "h-[280px] lg:h-[250px] lg:col-span-5" },
+  { title: "Corporate", count: "140+ brands", image: IMG.catCorporate, span: "h-[320px] lg:h-[360px] lg:col-span-12" },
 ];
 
 export const Portfolio = () => {
@@ -40,7 +40,7 @@ export const Portfolio = () => {
                 className={`group relative block h-full w-full overflow-hidden rounded-2xl shadow-card`}
               >
                 <img
-                  src={c.img}
+                  src={c.image}
                   alt={`${c.title} photography`}
                   loading="lazy"
                   className="absolute inset-0 h-full w-full object-cover img-zoom"

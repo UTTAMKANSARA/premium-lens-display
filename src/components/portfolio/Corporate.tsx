@@ -18,6 +18,7 @@ export const Corporate = () => {
     <section id="corporate" className="relative py-24 md:py-36 bg-foreground text-background overflow-hidden">
       <div className="container relative z-10">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+
           {/* Copy */}
           <div className="lg:col-span-5">
             <Reveal>
@@ -59,27 +60,53 @@ export const Corporate = () => {
             </Reveal>
           </div>
 
-          {/* Masonry */}
+          {/* Masonry image grid */}
           <div className="lg:col-span-7">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 items-start">
+            <div className="grid grid-cols-2 gap-4 md:gap-5 items-start">
+
+              {/* Left column */}
               <Parallax speed={0.06} className="space-y-4 md:space-y-5">
                 <Reveal variant="mask">
-                  <img src={IMG.corp1} alt="Corporate keynote" loading="lazy" className="w-full aspect-[4/5] object-cover rounded-2xl" />
+                  <img
+                    src={IMG.corp1}
+                    alt="Corporate keynote"
+                    loading="lazy"
+                    className="w-full aspect-[4/5] object-cover rounded-2xl"
+                  />
                 </Reveal>
                 <Reveal variant="mask" delay={120}>
-                  <img src={IMG.corp2} alt="Team workshop" loading="lazy" className="w-full aspect-square object-cover rounded-2xl" />
+                  <img
+                    src={IMG.corp2}
+                    alt="Team workshop"
+                    loading="lazy"
+                    className="w-full aspect-square object-cover rounded-2xl"
+                  />
                 </Reveal>
               </Parallax>
-              <Parallax speed={-0.08} className="space-y-4 md:space-y-5 sm:mt-10">
-                <Reveal variant="mask" delay={80}>
-                  <img src={IMG.corp3} alt="Brand portrait" loading="lazy" className="w-full aspect-square object-cover rounded-2xl" />
+
+              {/* Right column — offset top for staggered depth */}
+              <Parallax speed={-0.08} className="space-y-4 md:space-y-5 mt-10">
+                <Reveal variant="mask">
+                  <img
+                    src={IMG.corp3}
+                    alt="Brand portrait"
+                    loading="lazy"
+                    className="w-full aspect-square object-cover rounded-2xl"
+                  />
                 </Reveal>
-                <Reveal variant="mask" delay={200}>
-                  <img src={IMG.corp4} alt="Office candid" loading="lazy" className="w-full aspect-[4/5] object-cover rounded-2xl" />
+                <Reveal variant="mask">
+                  <img
+                    src={IMG.corp4}
+                    alt="Office candid"
+                    loading="lazy"
+                    className="w-full aspect-[4/5] object-cover rounded-2xl"
+                  />
                 </Reveal>
               </Parallax>
+
             </div>
           </div>
+
         </div>
 
         {/* Logo marquee */}
@@ -101,7 +128,7 @@ export const Corporate = () => {
         </div>
       </div>
 
-      {/* Decor */}
+      {/* Decor blob */}
       <div aria-hidden className="pointer-events-none absolute -top-40 -right-40 h-[480px] w-[480px] rounded-full bg-primary/15 blur-3xl" />
     </section>
   );

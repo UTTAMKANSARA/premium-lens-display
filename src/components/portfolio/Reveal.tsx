@@ -1,4 +1,10 @@
-import { useEffect, useRef, useState, type ReactNode, type CSSProperties } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type ReactNode,
+  type CSSProperties,
+} from "react";
 
 interface RevealProps {
   children: ReactNode;
@@ -8,12 +14,20 @@ interface RevealProps {
   variant?: "fade" | "mask";
 }
 
-export const Reveal = ({ children, className = "", delay = 0, as: Tag = "div", variant = "fade" }: RevealProps) => {
+export const Reveal = ({
+  children,
+  className = "",
+  delay = 0,
+  as: Tag = "div",
+  variant = "fade",
+}: RevealProps) => {
   const ref = useRef<HTMLElement | null>(null);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
     if (reduceMotion || typeof IntersectionObserver === "undefined") {
       setVisible(true);
       return;
@@ -21,14 +35,6 @@ export const Reveal = ({ children, className = "", delay = 0, as: Tag = "div", v
 
     const node = ref.current;
     if (!node) return;
-
-    // Reveal immediately if already in view on mount (avoids stuck hidden state)
-    const rect = node.getBoundingClientRect();
-    const vh = window.innerHeight || document.documentElement.clientHeight;
-    if (rect.top < vh && rect.bottom > 0) {
-      setVisible(true);
-      return;
-    }
 
     const obs = new IntersectionObserver(
       (entries) => {
@@ -39,10 +45,32 @@ export const Reveal = ({ children, className = "", delay = 0, as: Tag = "div", v
           }
         });
       },
-      { threshold: 0.05, rootMargin: "0px 0px 10% 0px" }
+      // Large bottom rootMargin: fires 200px before the element scrolls into view.
+      // This gives the 1.1s clip-path transition time to complete before the user
+      // actually sees the element. Also handles scroll-restoration timing: even if
+      // the browser restores scroll after this observer is set up, the generous
+      // margin ensures elements already on-screen are immediately revealed.
+      { threshold: 0, rootMargin: "0px 0px 200px 0px" }
     );
+
     obs.observe(node);
-    return () => obs.disconnect();
+
+    // Fallback: after scroll restoration settles (≈300 ms), do a manual check.
+    // This handles cases where the IntersectionObserver initial callback fires
+    // before the browser finishes repositioning the scroll.
+    const fallback = setTimeout(() => {
+      const rect = node.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      if (rect.top < vh + 200 && rect.bottom > 0) {
+        setVisible(true);
+        obs.unobserve(node);
+      }
+    }, 300);
+
+    return () => {
+      obs.disconnect();
+      clearTimeout(fallback);
+    };
   }, []);
 
   const base = variant === "mask" ? "reveal-mask" : "reveal";

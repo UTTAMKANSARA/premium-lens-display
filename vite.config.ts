@@ -8,10 +8,6 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
-     headers: {
-      "Content-Security-Policy":
-        "default-src 'self' https: data: blob: 'unsafe-inline' 'unsafe-eval'; img-src * data: blob:;",
-    },
     hmr: {
       overlay: false,
     },

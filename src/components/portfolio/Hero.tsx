@@ -45,7 +45,7 @@ export const Hero = () => {
             <Reveal>
               <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.32em] text-muted-foreground">
                 <Camera size={14} className="text-primary" />
-                Indian event photographer · Est. 2017
+                Indian event photographer · Est. 2020
               </span>
             </Reveal>
 
@@ -90,7 +90,7 @@ export const Hero = () => {
                     <img key={s} src={s} alt="" className="h-8 w-8 rounded-full object-cover border-2 border-background" />
                   ))}
                 </div>
-                <span>Loved by 350+ couples & brands across India</span>
+                <span>Loved by 200+ couples & brands across India</span>
               </div>
             </Reveal>
           </div>

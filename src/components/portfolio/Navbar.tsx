@@ -30,8 +30,8 @@ export const Navbar = () => {
     >
       <div className="container flex items-center justify-between">
         <a href="#top" className="flex items-baseline gap-2 group">
-          <span className="font-display text-2xl tracking-tight text-foreground">Aarav</span>
-          <span className="font-display text-2xl text-primary italic">Kapoor</span>
+          <span className="font-display text-2xl tracking-tight text-foreground">Mehfill</span>
+          <span className="font-display text-2xl text-primary italic">Moments</span>
           <span className="hidden sm:inline text-[10px] uppercase tracking-[0.3em] text-muted-foreground ml-2">Photography</span>
         </a>
 

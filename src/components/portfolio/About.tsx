@@ -4,9 +4,9 @@ import { Counter } from "./Counter";
 import { IMG } from "./images";
 
 const stats = [
-  { value: 8, suffix: "+", label: "Years behind the lens" },
-  { value: 400, suffix: "+", label: "Events covered" },
-  { value: 350, suffix: "+", label: "Happy clients" },
+  { value: 5, suffix: "+", label: "Years behind the lens" },
+  { value: 100, suffix: "+", label: "Events covered" },
+  { value: 200, suffix: "+", label: "Happy clients" },
 ];
 
 export const About = () => {
@@ -34,7 +34,7 @@ export const About = () => {
               <p className="font-display text-sm italic leading-snug">
                 "I don't pose moments. I wait for them."
               </p>
-              <p className="mt-2 text-[10px] uppercase tracking-[0.25em] text-muted-foreground">— Aarav</p>
+              <p className="mt-2 text-[10px] uppercase tracking-[0.25em] text-muted-foreground">— VISHAL</p>
             </div>
           </Reveal>
         </div>
@@ -52,7 +52,7 @@ export const About = () => {
           <Reveal delay={260}>
             <div className="mt-7 space-y-5 text-muted-foreground text-pretty max-w-xl">
               <p>
-                I'm Aarav, a Mumbai‑based photographer with eight years of
+                I'm Vishal, a udaipur‑based photographer with eight years of
                 documenting weddings, intimate family rituals, and brand stories
                 across India. My work sits between heirloom‑editorial and
                 candid — restrained, warm, and unmistakably you.

@@ -17,8 +17,8 @@ export const Footer = () => {
         <div className="grid md:grid-cols-12 gap-10">
           <div className="md:col-span-5">
             <div className="flex items-baseline gap-2">
-              <span className="font-display text-3xl">Aarav</span>
-              <span className="font-display text-3xl italic text-primary">Kapoor</span>
+              <span className="font-display text-3xl">Mehfill</span>
+              <span className="font-display text-3xl italic text-primary">Moments</span>
             </div>
             <p className="mt-5 max-w-sm text-background/70 text-pretty">
               An independent photographer crafting heirloom imagery for Indian
@@ -60,7 +60,7 @@ export const Footer = () => {
         </div>
 
         <div className="mt-16 pt-8 border-t border-background/15 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-background/55">
-          <p>© {new Date().getFullYear()} Aarav Kapoor Photography. Crafted with care in Mumbai.</p>
+          <p>© {new Date().getFullYear()} Mehfill Moments Photography. Crafted with care in udaipur                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       .</p>
           <p className="font-display italic text-background/70">Made to be remembered.</p>
         </div>
       </div>

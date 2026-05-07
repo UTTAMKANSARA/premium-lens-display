@@ -13,10 +13,10 @@ const contactSchema = z.object({
   message: z.string().trim().min(10, "Tell us a little more (10+ chars)").max(800),
 });
 
-const PHONE = "+91 8769374119";
-const PHONE_HREF = "+918769374119";
-const EMAIL = "studio@aaravkapoor.in";
-const STUDIO = "Bandra West, Mumbai · Available across India";
+const PHONE = "+91 9549111596";
+const PHONE_HREF = "+919549111596";
+const EMAIL = "studio@mehfillmoments.in";
+const STUDIO = "Udaipur · Available across India";
 
 export const Contact = () => {
   const [submitting, setSubmitting] = useState(false);

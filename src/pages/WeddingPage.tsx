@@ -135,12 +135,7 @@ const WeddingPage = () => {
           </Reveal>
           <Reveal delay={300}>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-              <a
-                href="/#contact"
-                className="inline-flex items-center gap-3 rounded-full bg-primary text-primary-foreground px-7 py-3.5 text-sm tracking-wide hover:bg-secondary hover:text-foreground transition-colors duration-500"
-              >
-                Book a session
-              </a>
+              <a href="/#contact" className="inline-flex items-center gap-3 rounded-full bg-primary text-primary-foreground px-7 py-3.5 text-sm tracking-wide hover:bg-secondary hover:text-foreground transition-colors duration-500">Book a Session</a>
               <Link
                 to="/"
                 className="inline-flex items-center gap-2 rounded-full border border-background/25 px-7 py-3.5 text-sm tracking-wide hover:bg-background/10 transition-colors duration-500"

@@ -10,15 +10,26 @@ import WeddingPage from "./pages/WeddingPage.tsx";
 import BabyShowerPage from "./pages/BabyShowerPage.tsx";
 import BirthdayPage from "./pages/BirthdayPage.tsx";
 import CorporatePage from "./pages/CorporatePage.tsx";
-
+import { Contact } from "@/components/portfolio/Contact";
 const queryClient = new QueryClient();
 
 const ScrollToTop = () => {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    if (!hash) {
+      window.scrollTo(0, 0);
+    } else {
+      // Small delay to ensure the component is rendered
+      setTimeout(() => {
+        const id = hash.replace("#", "");
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 0);
+    }
+  }, [pathname, hash]);
 
   return null;
 };
@@ -36,6 +47,7 @@ const App = () => (
           <Route path="/baby-shower" element={<BabyShowerPage />} />
           <Route path="/birthday" element={<BirthdayPage />} />
           <Route path="/corporate" element={<CorporatePage />} />
+          <Route path="/contact" element={<Contact />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

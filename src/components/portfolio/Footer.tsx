@@ -1,11 +1,11 @@
 import { Instagram, Facebook, Youtube, Mail } from "lucide-react";
 
 const quickLinks = [
-  { href: "#about", label: "About" },
-  { href: "#portfolio", label: "Portfolio" },
-  { href: "#corporate", label: "Corporate" },
-  { href: "#packages", label: "Packages" },
-  { href: "#contact", label: "Contact" },
+  { href: "/#about", label: "About" },
+  { href: "/#portfolio", label: "Portfolio" },
+  { href: "/#corporate", label: "Corporate" },
+  { href: "/#packages", label: "Packages" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 const services = ["Wedding Photography", "Birthday Celebrations", "Baby Showers", "Corporate Events", "Brand Portraits"];

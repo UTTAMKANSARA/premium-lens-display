@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const links = [
-  { href: "#about", label: "About" },
-  { href: "#portfolio", label: "Portfolio" },
-  { href: "#corporate", label: "Corporate" },
-  { href: "#packages", label: "Packages" },
-  { href: "#contact", label: "Contact" },
+  { href: "/#about", label: "About" },
+  { href: "/#portfolio", label: "Portfolio" },
+  { href: "/#corporate", label: "Corporate" },
+  { href: "/#packages", label: "Packages" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export const Navbar = () => {
@@ -44,7 +44,7 @@ export const Navbar = () => {
         </nav>
 
         <a
-          href="#contact"
+          href="/#contact"
           className="hidden md:inline-flex items-center gap-2 rounded-full bg-foreground text-background px-5 py-2.5 text-sm tracking-wide hover:bg-primary transition-colors duration-500"
         >
           Book a session
@@ -76,7 +76,7 @@ export const Navbar = () => {
             </a>
           ))}
           <a
-            href="#contact"
+            href="/#contact"
             onClick={() => setOpen(false)}
             className="mt-2 inline-flex items-center justify-center rounded-full bg-foreground text-background px-5 py-3 text-sm"
           >

@@ -15,7 +15,7 @@ const contactSchema = z.object({
 
 const PHONE = "+91 9549111596";
 const PHONE_HREF = "+919549111596";
-const EMAIL = "studio@mehfillmoments.in";
+const EMAIL = "mehfillmomentsphotography@gmail.com";
 const STUDIO = "Udaipur · Available across India";
 
 export const Contact = () => {
@@ -41,7 +41,7 @@ export const Contact = () => {
     setSubmitting(true);
 
     // Add Web3Forms access key
-    form.append("access_key", "99d3a489-7c36-43e7-9559-b2dc5863797a");
+    form.append("access_key", "0b99bcff-afa0-4eb0-9a8b-c9849ecc9d48");
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
@@ -143,9 +143,9 @@ export const Contact = () => {
             <Reveal delay={200}>
               <div className="rounded-3xl bg-foreground text-background p-8 md:p-10 shadow-warm h-full flex flex-col">
                 <span className="text-xs uppercase tracking-[0.32em] text-secondary">Studio</span>
-                <h3 className="font-display text-3xl mt-4">Aarav Kapoor Photography</h3>
+                <h3 className="font-display text-3xl mt-4">Mehfill Moments Photography</h3>
                 <p className="mt-3 text-background/70 text-sm">
-                  Booking dates 3–6 months in advance for the 2026 wedding season.
+                  Booking dates 1–2 months in advance for the 2026 wedding season.
                 </p>
 
                 <ul className="mt-10 space-y-5">
@@ -174,7 +174,7 @@ export const Contact = () => {
                     <span className="grid place-items-center h-10 w-10 rounded-full bg-background/10 text-secondary"><Instagram size={16} /></span>
                     <div>
                       <div className="text-[10px] uppercase tracking-[0.3em] text-background/50">Instagram</div>
-                      <a href="#" className="link-underline mt-1 block">@aarav.kapoor</a>
+                      <a href="#" className="link-underline mt-1 block">@mehfillmomentsphotography</a>
                     </div>
                   </li>
                 </ul>

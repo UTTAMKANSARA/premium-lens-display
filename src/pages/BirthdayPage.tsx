@@ -5,15 +5,7 @@ import { Parallax } from "@/components/portfolio/Parallax";
 import { Navbar } from "@/components/portfolio/Navbar";
 import { Footer } from "@/components/portfolio/Footer";
 import { IMG } from "@/components/portfolio/images";
-
-const gallery = [
-  { src: IMG.bday1, alt: "Birthday balloons", aspect: "aspect-[4/5]" },
-  { src: IMG.bday2, alt: "Party celebration", aspect: "aspect-square" },
-  { src: IMG.bday3, alt: "Confetti moment", aspect: "aspect-[3/4]" },
-  { src: IMG.bday4, alt: "Festive table", aspect: "aspect-[4/5]" },
-  { src: IMG.bday5, alt: "Cake cutting", aspect: "aspect-square" },
-  { src: IMG.bday6, alt: "Joyful candid", aspect: "aspect-[3/4]" },
-];
+import { useCloudinaryGallery } from "@/hooks/useCloudinaryGallery";
 
 const highlights = [
   { icon: PartyPopper, label: "80+ events covered" },
@@ -22,6 +14,17 @@ const highlights = [
 ];
 
 const BirthdayPage = () => {
+  const { images: dynamicGallery, loading, error } = useCloudinaryGallery("dz6qop5kk", "birthday");
+  // Fallback to static images if dynamic fetching fails or is loading empty (until client uploads)
+  const displayGallery = dynamicGallery.length > 0 ? dynamicGallery : [
+    { src: IMG.bday1, alt: "Birthday balloons", aspect: "aspect-[4/5]" },
+    { src: IMG.bday2, alt: "Party celebration", aspect: "aspect-square" },
+    { src: IMG.bday3, alt: "Confetti moment", aspect: "aspect-[3/4]" },
+    { src: IMG.bday4, alt: "Festive table", aspect: "aspect-[4/5]" },
+    { src: IMG.bday5, alt: "Cake cutting", aspect: "aspect-square" },
+    { src: IMG.bday6, alt: "Joyful candid", aspect: "aspect-[3/4]" },
+  ];
+
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <Navbar />
@@ -71,7 +74,9 @@ const BirthdayPage = () => {
             </div>
           </Reveal>
           <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 md:gap-5 space-y-4 md:space-y-5">
-            {gallery.map((img, i) => (
+            {loading && <div className="col-span-full py-10 text-center text-muted-foreground">Loading gallery...</div>}
+            {error && <div className="col-span-full py-10 text-center text-destructive">{error}</div>}
+            {!loading && !error && displayGallery.map((img, i) => (
               <Reveal key={img.src} variant="mask" delay={i * 70}>
                 <Parallax speed={i % 2 === 0 ? 0.04 : -0.04}>
                   <div className="group relative overflow-hidden rounded-2xl shadow-card break-inside-avoid">

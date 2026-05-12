@@ -6,14 +6,7 @@ import { Navbar } from "@/components/portfolio/Navbar";
 import { Footer } from "@/components/portfolio/Footer";
 import { IMG } from "@/components/portfolio/images";
 
-const gallery = [
-  { src: IMG.baby1, alt: "Family portrait", aspect: "aspect-[4/5]" },
-  { src: IMG.baby2, alt: "Baby candid", aspect: "aspect-square" },
-  { src: IMG.baby3, alt: "Shower decorations", aspect: "aspect-[3/4]" },
-  { src: IMG.baby4, alt: "Tender moments", aspect: "aspect-[4/5]" },
-  { src: IMG.baby5, alt: "Celebration joy", aspect: "aspect-square" },
-  { src: IMG.baby6, alt: "Little details", aspect: "aspect-[3/4]" },
-];
+import { useCloudinaryGallery } from "@/hooks/useCloudinaryGallery";
 
 const highlights = [
   { icon: Baby, label: "60+ stories captured" },
@@ -22,6 +15,21 @@ const highlights = [
 ];
 
 const BabyShowerPage = () => {
+  const { images: dynamicGallery, loading, error } = useCloudinaryGallery("dz6qop5kk", "babyshower");
+
+  const staticGallery = [
+    { src: IMG.baby1, alt: "Family portrait", aspect: "aspect-[4/5]" },
+    { src: IMG.baby2, alt: "Baby candid", aspect: "aspect-square" },
+    { src: IMG.baby3, alt: "Shower decorations", aspect: "aspect-[3/4]" },
+    { src: IMG.baby4, alt: "Tender moments", aspect: "aspect-[4/5]" },
+    { src: IMG.baby5, alt: "Celebration joy", aspect: "aspect-square" },
+    { src: IMG.baby6, alt: "Little details", aspect: "aspect-[3/4]" },
+  ];
+
+  const displayGallery = dynamicGallery.length > 0 ? dynamicGallery : staticGallery;
+
+
+
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <Navbar />
@@ -91,7 +99,9 @@ const BabyShowerPage = () => {
           </Reveal>
 
           <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 md:gap-5 space-y-4 md:space-y-5">
-            {gallery.map((img, i) => (
+            {loading && <div className="col-span-full py-10 text-center text-muted-foreground">Loading gallery...</div>}
+            {error && <div className="col-span-full py-10 text-center text-destructive">{error}</div>}
+            {!loading && !error && displayGallery.map((img, i) => (
               <Reveal key={img.src} variant="mask" delay={i * 70}>
                 <Parallax speed={i % 2 === 0 ? 0.04 : -0.04}>
                   <div className="group relative overflow-hidden rounded-2xl shadow-card break-inside-avoid">

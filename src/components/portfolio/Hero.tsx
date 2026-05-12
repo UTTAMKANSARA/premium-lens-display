@@ -42,18 +42,33 @@ export const Hero = () => {
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Copy */}
           <div className="lg:col-span-5 relative z-10">
-            <Reveal>
+            {/* <Reveal>
               <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.32em] text-muted-foreground">
                 <Camera size={14} className="text-primary" />
                 Indian event photographer · Est. 2020
               </span>
+            </Reveal> */}
+
+
+
+            <Reveal>
+              <div className="flex items-center gap-4">
+
+                <img
+                  src={IMG.logo}
+                  alt="Mehfil Moments Logo"
+                  className="h-50 w-50 pb-20"
+                />
+              </div>
             </Reveal>
 
+
+            {/* 
             <h1 className="mt-6 font-display text-[14vw] sm:text-7xl lg:text-[5.5rem] leading-[0.95] tracking-tight text-balance">
               <Reveal as="span" className="block">Stories told</Reveal>
               <Reveal as="span" className="block italic text-primary" delay={120}>in light.</Reveal>
               <Reveal as="span" className="block" delay={240}>and stillness.</Reveal>
-            </h1>
+            </h1> */}
 
             <Reveal delay={380}>
               <p className="mt-7 max-w-md text-base md:text-lg text-muted-foreground text-pretty">

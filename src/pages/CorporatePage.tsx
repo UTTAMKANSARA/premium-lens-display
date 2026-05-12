@@ -6,14 +6,7 @@ import { Navbar } from "@/components/portfolio/Navbar";
 import { Footer } from "@/components/portfolio/Footer";
 import { IMG } from "@/components/portfolio/images";
 
-const gallery = [
-  { src: IMG.corp1, alt: "Corporate keynote", aspect: "aspect-[4/5]" },
-  { src: IMG.corp2, alt: "Team workshop", aspect: "aspect-square" },
-  { src: IMG.corp3, alt: "Brand portrait", aspect: "aspect-[3/4]" },
-  { src: IMG.corp4, alt: "Office candid", aspect: "aspect-[4/5]" },
-  { src: IMG.heroCorporate, alt: "Conference stage", aspect: "aspect-square" },
-  { src: IMG.catCorporate, alt: "Corporate event", aspect: "aspect-[3/4]" },
-];
+import { useCloudinaryGallery } from "@/hooks/useCloudinaryGallery";
 
 const highlights = [
   { icon: Briefcase, label: "140+ brands served" },
@@ -22,6 +15,18 @@ const highlights = [
 ];
 
 const CorporatePage = () => {
+  const { images: dynamicGallery, loading, error } = useCloudinaryGallery("dz6qop5kk", "corporate");
+
+  const staticGallery = [
+    { src: IMG.corp1, alt: "Corporate keynote", aspect: "aspect-[4/5]" },
+    { src: IMG.corp2, alt: "Team workshop", aspect: "aspect-square" },
+    { src: IMG.corp3, alt: "Brand portrait", aspect: "aspect-[3/4]" },
+    { src: IMG.corp4, alt: "Office candid", aspect: "aspect-[4/5]" },
+    { src: IMG.heroCorporate, alt: "Conference stage", aspect: "aspect-square" },
+    { src: IMG.catCorporate, alt: "Corporate event", aspect: "aspect-[3/4]" },
+  ];
+
+  const displayGallery = dynamicGallery.length > 0 ? dynamicGallery : staticGallery;
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <Navbar />
@@ -71,7 +76,9 @@ const CorporatePage = () => {
             </div>
           </Reveal>
           <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 md:gap-5 space-y-4 md:space-y-5">
-            {gallery.map((img, i) => (
+            {loading && <div className="col-span-full py-10 text-center text-muted-foreground">Loading gallery...</div>}
+            {error && <div className="col-span-full py-10 text-center text-destructive">{error}</div>}
+            {!loading && !error && displayGallery.map((img, i) => (
               <Reveal key={img.src} variant="mask" delay={i * 70}>
                 <Parallax speed={i % 2 === 0 ? 0.04 : -0.04}>
                   <div className="group relative overflow-hidden rounded-2xl shadow-card break-inside-avoid">

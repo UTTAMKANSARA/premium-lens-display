@@ -6,16 +6,7 @@ import { Navbar } from "@/components/portfolio/Navbar";
 import { Footer } from "@/components/portfolio/Footer";
 import { IMG } from "@/components/portfolio/images";
 
-const gallery = [
-  { src: IMG.wed1, alt: "Wedding couple portrait", aspect: "aspect-[4/5]" },
-  { src: IMG.wed2, alt: "Bridal details", aspect: "aspect-square" },
-  { src: IMG.wed3, alt: "Floral decor", aspect: "aspect-[3/4]" },
-  { src: IMG.wed4, alt: "Wedding ceremony", aspect: "aspect-[4/5]" },
-  { src: IMG.wed5, alt: "Wedding reception", aspect: "aspect-square" },
-  { src: IMG.wed6, alt: "Couple in nature", aspect: "aspect-[3/4]" },
-  { src: IMG.wed7, alt: "Mehendi ceremony", aspect: "aspect-square" },
-  { src: IMG.wed8, alt: "Wedding candid", aspect: "aspect-[4/5]" },
-];
+import { useCloudinaryGallery } from "@/hooks/useCloudinaryGallery";
 
 const highlights = [
   { icon: Heart, label: "120+ love stories captured" },
@@ -24,6 +15,20 @@ const highlights = [
 ];
 
 const WeddingPage = () => {
+  const { images: dynamicGallery, loading, error } = useCloudinaryGallery("dz6qop5kk", "wedding");
+
+  const staticGallery = [
+    { src: IMG.wed1, alt: "Wedding couple portrait", aspect: "aspect-[4/5]" },
+    { src: IMG.wed2, alt: "Bridal details", aspect: "aspect-square" },
+    { src: IMG.wed3, alt: "Floral decor", aspect: "aspect-[3/4]" },
+    { src: IMG.wed4, alt: "Wedding ceremony", aspect: "aspect-[4/5]" },
+    { src: IMG.wed5, alt: "Wedding reception", aspect: "aspect-square" },
+    { src: IMG.wed6, alt: "Couple in nature", aspect: "aspect-[3/4]" },
+    { src: IMG.wed7, alt: "Mehendi ceremony", aspect: "aspect-square" },
+    { src: IMG.wed8, alt: "Wedding candid", aspect: "aspect-[4/5]" },
+  ];
+
+  const displayGallery = dynamicGallery.length > 0 ? dynamicGallery : staticGallery;
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       <Navbar />
@@ -94,7 +99,9 @@ const WeddingPage = () => {
           </Reveal>
 
           <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 md:gap-5 space-y-4 md:space-y-5">
-            {gallery.map((img, i) => (
+            {loading && <div className="col-span-full py-10 text-center text-muted-foreground">Loading gallery...</div>}
+            {error && <div className="col-span-full py-10 text-center text-destructive">{error}</div>}
+            {!loading && !error && displayGallery.map((img, i) => (
               <Reveal key={img.src} variant="mask" delay={i * 70}>
                 <Parallax speed={i % 2 === 0 ? 0.04 : -0.04}>
                   <div className="group relative overflow-hidden rounded-2xl shadow-card break-inside-avoid">

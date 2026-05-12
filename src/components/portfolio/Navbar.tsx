@@ -22,16 +22,16 @@ export const Navbar = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-cream/85 backdrop-blur-md border-b border-border/60 py-3"
-          : "bg-transparent py-6"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
+        ? "bg-cream/85 backdrop-blur-md border-b border-border/60 py-3"
+        : "bg-transparent py-6"
+        }`}
     >
+
       <div className="container flex items-center justify-between">
         <a href="#top" className="flex items-baseline gap-2 group">
-          <span className="font-display text-2xl tracking-tight text-foreground">Mehfill</span>
-          <span className="font-display text-2xl text-primary italic">Moments</span>
+          <span className="font-display text-4xl font-semibold tracking-tight text-foreground">Mehfill</span>
+          <span className="font-display text-3xl font-semibold text-primary italic">Moments</span>
           <span className="hidden sm:inline text-[10px] uppercase tracking-[0.3em] text-muted-foreground ml-2">Photography</span>
         </a>
 
@@ -61,9 +61,8 @@ export const Navbar = () => {
 
       {/* Mobile menu */}
       <div
-        className={`md:hidden overflow-hidden transition-[max-height,opacity] duration-500 ${
-          open ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-        }`}
+        className={`md:hidden overflow-hidden transition-[max-height,opacity] duration-500 ${open ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          }`}
       >
         <nav className="container flex flex-col gap-4 py-6 border-t border-border/60 mt-3 bg-cream/95 backdrop-blur">
           {links.map((l) => (
